@@ -98,6 +98,7 @@ export default function App() {
     setPendingRevision(null);
     try {
       const result = await rewriteFragment({
+        text: baseText,
         selected_text: selectedText,
         context_before: before,
         context_after: after,
