@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.app.json && tsc -p functions/tsconfig.json && vite build",
+    "build": "tsc -p tsconfig.app.json && tsc -p tsconfig.worker.json && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "pages:dev": "npm run build && wrangler pages dev dist",
-    "typecheck": "tsc -p tsconfig.app.json && tsc -p functions/tsconfig.json"
+    "worker:dev": "npm run build && wrangler dev",
+    "typecheck": "tsc -p tsconfig.app.json && tsc -p tsconfig.worker.json"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
