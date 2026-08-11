@@ -1,0 +1,30 @@
+{
+  "name": "personal-writing-editor",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.app.json && tsc -p functions/tsconfig.json && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "pages:dev": "npm run build && wrangler pages dev dist",
+    "typecheck": "tsc -p tsconfig.app.json && tsc -p functions/tsconfig.json"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "diff": "^8.0.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vitest": "latest",
+    "wrangler": "latest"
+  }
+}
