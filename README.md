@@ -98,6 +98,10 @@ La carpeta `tests/fixtures/edge-cases.md` contiene casos para Markdown, URLs, ci
 
 Las pruebas de API reales deben hacerse con una key de prueba y nunca con datos clínicos reales.
 
+## Nota de despliegue
+
+El repositorio utiliza despliegue continuo desde `main`; los cambios en la rama principal deben generar un nuevo build en el proveedor de hosting configurado.
+
 ## Licencia
 
 MIT. Ver `LICENSE`.
