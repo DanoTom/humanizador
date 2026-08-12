@@ -10,3 +10,6 @@ run_worker_first = ["/api/*"]
 
 [vars]
 NVIDIA_MODEL = "z-ai/glm-5.2"
+
+[secrets]
+required = ["NVIDIA_API_KEY"]
