@@ -3,7 +3,7 @@ import { analyze, rewrite, rewriteFragment } from './server/service';
 import { validateSettings, validateText } from './server/validation/input';
 
 type WorkerEnv = {
-  NVIDIA_API_KEY: string;
+  NVIDIA_API_KEY?: string;
   NVIDIA_MODEL?: string;
   ASSETS: Fetcher;
 };
@@ -42,19 +42,29 @@ async function handleApi(request: Request, env: WorkerEnv): Promise<Response> {
   if (request.method !== 'POST') return json({ error: 'Método no permitido.' }, 405);
 
   const pathname = new URL(request.url).pathname;
+
+  if (pathname === '/api/health') {
+    return json({
+      ok: true,
+      provider: 'nvidia',
+      model: env.NVIDIA_MODEL || 'z-ai/glm-5.2',
+      api_key_configured: Boolean(env.NVIDIA_API_KEY),
+    });
+  }
+
   const body = await parseJson(request);
 
   if (pathname === '/api/analyze') {
     const text = validateText(body.text);
     const settings = validateSettings(body.settings);
-    return json(await analyze(env, text, settings));
+    return json(await analyze(env as { NVIDIA_API_KEY: string; NVIDIA_MODEL?: string }, text, settings));
   }
 
   if (pathname === '/api/rewrite') {
     const text = validateText(body.text);
     const settings = validateSettings(body.settings);
     const instruction = typeof body.instruction === 'string' ? body.instruction.slice(0, 1000) : undefined;
-    return json(await rewrite(env, text, settings, instruction));
+    return json(await rewrite(env as { NVIDIA_API_KEY: string; NVIDIA_MODEL?: string }, text, settings, instruction));
   }
 
   if (pathname === '/api/rewrite-fragment') {
@@ -65,7 +75,7 @@ async function handleApi(request: Request, env: WorkerEnv): Promise<Response> {
       ? body.goal.slice(0, 500)
       : 'Mejorar claridad y naturalidad sin alterar el significado.';
     const settings = validateSettings(body.settings);
-    return json(await rewriteFragment(env, selected, before, after, goal, settings));
+    return json(await rewriteFragment(env as { NVIDIA_API_KEY: string; NVIDIA_MODEL?: string }, selected, before, after, goal, settings));
   }
 
   return json({ error: 'Ruta no encontrada.' }, 404);
