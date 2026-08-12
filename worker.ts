@@ -39,11 +39,10 @@ function errorResponse(error: unknown): Response {
 }
 
 async function handleApi(request: Request, env: WorkerEnv): Promise<Response> {
-  if (request.method !== 'POST') return json({ error: 'Método no permitido.' }, 405);
-
   const pathname = new URL(request.url).pathname;
 
   if (pathname === '/api/health') {
+    if (request.method !== 'GET') return json({ error: 'Método no permitido.' }, 405);
     return json({
       ok: true,
       provider: 'nvidia',
@@ -51,6 +50,8 @@ async function handleApi(request: Request, env: WorkerEnv): Promise<Response> {
       api_key_configured: Boolean(env.NVIDIA_API_KEY),
     });
   }
+
+  if (request.method !== 'POST') return json({ error: 'Método no permitido.' }, 405);
 
   const body = await parseJson(request);
 
