@@ -62,17 +62,28 @@ h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; font-size
 .panel-title h2, .history h3, .change-list h3 { margin: 0; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; font-weight: 750; color: #776d63; }
 .empty-panel { padding: 24px 17px; color: #9c9389; font-size: 12px; line-height: 1.55; }
 .analysis-panel, .revision { padding: 14px; }
-.scores { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 13px; }
-.scores div { background: #f6f2ec; border: 1px solid #ebe4dc; border-radius: 9px; padding: 8px 5px; text-align: center; }
-.scores span { display: block; color: #978d82; font-size: 8px; text-transform: uppercase; letter-spacing: .04em; }
-.scores strong { font-size: 12px; color: #433c35; }
+.scores { display: grid; gap: 8px; margin-bottom: 13px; }
+.score-row { display: grid; gap: 5px; }
+.score-copy { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.score-copy span { color: #70665d; font-size: 11px; }
+.score-copy strong { font-size: 11px; color: #433c35; font-variant-numeric: tabular-nums; }
+.score-bar { display: flex; gap: 4px; }
+.score-dot { height: 5px; flex: 1; border-radius: 999px; background: #e8e1d9; }
+.score-dot--active { background: #807466; }
+.analysis-divider { height: 1px; background: #e7e0d8; margin: 13px 0; }
 .issues { display: grid; gap: 8px; }
+.issues-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1px; color: #7f7469; font-size: 10px; text-transform: uppercase; letter-spacing: .09em; }
+.issues-heading strong { font-size: 10px; color: #4f463e; }
 .issue { border: 1px solid #e4ddd5; border-radius: 11px; padding: 10px 11px; background: #fffdf9; }
-.issue-top { display: flex; justify-content: space-between; color: #8a8076; font-size: 9px; text-transform: uppercase; letter-spacing: .06em; }
+.issue-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: #8a8076; font-size: 9px; text-transform: uppercase; letter-spacing: .06em; }
+.issue-category { color: #655c54; }
 .severity { border-radius: 999px; padding: 2px 6px; background: #eee9e2; }
 .severity--high { background: #f5dedb; color: #8c322a; }.severity--medium { background: #eee6d5; color: #745b2b; }.severity--low { background: #e2ecdf; color: #3d6238; }
 .issue blockquote { margin: 8px 0; padding-left: 9px; border-left: 2px solid #c1b7ad; font-family: Georgia, serif; font-size: 13px; line-height: 1.45; color: #50483f; }
-.issue p { font-size: 11px; line-height: 1.5; margin: 6px 0; color: #625950; }.suggestion { color: #3f3934; }
+.issue p { font-size: 11px; line-height: 1.5; margin: 6px 0; color: #625950; }
+.suggestion-box { margin-top: 9px; padding: 8px 9px; border-radius: 8px; background: #f7f3ed; border: 1px solid #e8e0d7; }
+.suggestion-label { display: block; font-size: 9px; color: #8b8075; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 2px; }
+.suggestion { color: #3f3934 !important; font-weight: 560; }
 
 .revision-diff { font-family: Georgia, serif; font-size: 14px; line-height: 1.65; white-space: pre-wrap; max-height: 360px; overflow: auto; padding: 2px 2px 14px; border-bottom: 1px solid #e7e0d8; }
 .diff-added { background: #dfeede; border-radius: 3px; }.diff-removed { background: #f3dddd; text-decoration: line-through; border-radius: 3px; }
@@ -84,4 +95,4 @@ h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; font-size
 footer { color: #968c82; font-size: 10px; margin-top: 16px; text-align: center; }
 
 @media (max-width: 1080px) { .workspace { grid-template-columns: 1fr; }.side-column { position: static; max-height: none; overflow: visible; grid-template-columns: 1fr 1fr; }.editor { min-height: 560px; } }
-@media (max-width: 760px) { .app-shell { padding: 18px 12px 28px; }.topbar { display: block; }.top-actions { margin-top: 14px; }.workspace { grid-template-columns: 1fr; }.side-column { grid-template-columns: 1fr; }.settings-grid { grid-template-columns: 1fr; }.selection-row { align-items: flex-start; flex-direction: column; }.editor { min-height: 500px; padding: 22px 18px 28px; font-size: 18px; }.scores { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) { .app-shell { padding: 18px 12px 28px; }.topbar { display: block; }.top-actions { margin-top: 14px; }.workspace { grid-template-columns: 1fr; }.side-column { grid-template-columns: 1fr; }.settings-grid { grid-template-columns: 1fr; }.selection-row { align-items: flex-start; flex-direction: column; }.editor { min-height: 500px; padding: 22px 18px 28px; font-size: 18px; }.scores { gap: 7px; } }
